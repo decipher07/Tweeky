@@ -2,11 +2,19 @@ import express, { Response, Request, NextFunction, Express } from "express";
 import Logging from "./logger/logging";
 import { config } from './config/config';
 import authRoutes from './routers/auth.router'
+import connectToMongoDB from './database/mongoose'
 
 const app: Express = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+/* Connecting to the Database */
+connectToMongoDB.then(() => {
+    Logging.info('MongoDB connected successfully.');
+})
+.catch((error) => Logging.error(error));
+
 
 /** Rules of our API */
 app.use((req: Request, res: Response, next: NextFunction) => {
