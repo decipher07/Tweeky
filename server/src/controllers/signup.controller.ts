@@ -59,7 +59,7 @@ const updateUserNameController = async ( req: UserIdRequest, res: Response, next
             return res.status(403).json({"success": false, "data": null, "message": "Username already exists"});
         }
         
-        await User.updateOne({ "_id" : req.userId }, { $set: { username }})
+        await User.updateOne({ "_id" : req.userId.userId as any }, { $set: { username }})
         
         return res.status(201).json({"success": true, "data": null, "message": null});
     } catch ( err: any ){
