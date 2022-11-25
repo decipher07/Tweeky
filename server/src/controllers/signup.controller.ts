@@ -61,7 +61,7 @@ const updateUserNameController = async ( req: UserIdRequest, res: Response, next
         
         await User.updateOne({ "_id" : req.userDocument.userId as any }, { $set: { username }})
         
-        return res.status(201).json({"success": true, "data": null, "message": null});
+        return res.status(200).json({"success": true, "data": null, "message": null});
     } catch ( err: any ){
         Logging.error(err.message);
         return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
@@ -87,7 +87,7 @@ const updatePasswordController = async ( req: UserIdRequest, res: Response, next
 
         await User.updateOne({ "_id" : req.userDocument.userId }, { $set: { password: hashedPassword }})
         
-        return res.status(201).json({"success": true, "data": null, "message": null});
+        return res.status(200).json({"success": true, "data": null, "message": null});
     } catch ( err: any ){
         Logging.error(err.message);
         return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
