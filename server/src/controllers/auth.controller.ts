@@ -3,6 +3,8 @@ import { getGoogleAuthURL, oauth2Client } from '../auth/utils'
 import { google } from 'googleapis';
 import Logging from "../logger/logging";
 import User, { IUser, IUserModel } from "../models/User";
+import jwt from "jsonwebtoken";
+import { config } from "../config/config";
 
 /* Server redirection to different website */
 const getGoogleAuthURLController = (req: Request, res: Response) => {
@@ -31,16 +33,41 @@ const redirectGoogleAuthController = async (req: Request, res: Response) => {
         const emailValidationForPreviousExistingEntries: { _id: string } | null = await User.exists({ email });
 
         if (emailValidationForPreviousExistingEntries) {
-            return res.status(200).json({ "success": true, "data": null, "message": null });
+            const userDocument : IUser = (await User.findOne({ email }))!;
+            const token = jwt.sign(
+                {
+                    // @ts-ignore
+                    userId: userDocument?._id,
+                    email: userDocument.email
+                },
+                config.jwt.secret,
+                {
+                    expiresIn: "30d"
+                }
+            )
+                
+            return res.status(200).json({ "success": true, "data": { token }, "message": null });
         }
 
         // Saving the User Data to the Model
-        await new User({
+        const userDocument = await new User({
             name,
             email
         }).save();
 
-        return res.status(200).json({ "success": true, "data": null, "message": null });
+        const token = jwt.sign(
+            {
+                // @ts-ignore
+                userId: userDocument?._id,
+                email: userDocument.email
+            },
+            config.jwt.secret,
+            {
+                expiresIn: "30d"
+            }
+        )
+
+        return res.status(201).json({ "success": true, "data": { token }, "message": null });
         
     } catch (err: any) {
         Logging.error(err.message);

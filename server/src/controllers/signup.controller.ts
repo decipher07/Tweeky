@@ -94,6 +94,7 @@ const updatePasswordController = async ( req: UserIdRequest, res: Response, next
     }
 }
 
+/** Login Controller */
 const loginController = async ( req: Request, res: Response, next: NextFunction ): Promise <Response> => {
     
     /* Getting the important details from the User */    
@@ -118,8 +119,7 @@ const loginController = async ( req: Request, res: Response, next: NextFunction 
             {
                 // @ts-ignore
                 userId: userDocument?._id,
-                name: userDocument?.name,
-                username: userDocument?.username
+                email: userDocument.email
             },
             config.jwt.secret,
             {
