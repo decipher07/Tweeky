@@ -3,6 +3,7 @@ import Logging from "./logger/logging";
 import { config } from './config/config';
 import authRoutes from './routers/auth.router'
 import connectToMongoDB from './database/mongoose'
+import signingRoutes from './routers/signup.router'
 
 const app: Express = express();
 
@@ -46,6 +47,9 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 /** Auth routes */
 app.use('/auth', authRoutes);
+
+/** User Signup/Login routes */
+app.use('/sign', signingRoutes);
 
 app.get('/ping', (req: Request, res: Response, next: NextFunction) => res.status(200).json({"message": "Server Working Successfully!"}));
 
