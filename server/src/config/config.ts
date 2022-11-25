@@ -13,6 +13,9 @@ const GOOGLE_REDIRECT_URI : string = process.env.GOOGLE_REDIRECT_URI || "http://
 /* MongoDB Configurations */
 const MONGO_URL: string = process.env.MONGO_URL || 'mongodb://localhost:27017/tweeky'
 
+/* JWT Configurations*/
+const JWT_SECRET: string = process.env.JWT_SECRET || 'squareboat'
+
 export const config = {
     server: {
         port: SERVER_PORT
@@ -24,5 +27,8 @@ export const config = {
     },
     database: {
         url: MONGO_URL
+    },
+    jwt: {
+        secret: JWT_SECRET
     }
 };
