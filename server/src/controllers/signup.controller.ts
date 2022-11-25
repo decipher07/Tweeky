@@ -9,17 +9,17 @@ const createUserController = async ( req: Request, res: Response, next: NextFunc
     const { name, email, password, username } = req.body ;
 
     try {        
-        // Validating Username
-        const usernameValidation : { _id : string } | null = await User.exists({ username });
+        // Validating Username exists or not
+        const usernameValidationForPreviousExistingEntries : { _id : string } | null = await User.exists({ username });
 
-        if ( usernameValidation ){
+        if ( usernameValidationForPreviousExistingEntries ){
             return res.status(403).json({"success": false, "data": null, "message": "Username already exists"});
         }
         
-        // Validating Email
-        const emailValidation : { _id : string } | null = await User.exists({ email });
+        // Validating Email exists or not
+        const emailValidationForPreviousExistingEntries : { _id : string } | null = await User.exists({ email });
         
-        if ( emailValidation ){
+        if ( emailValidationForPreviousExistingEntries ){
             return res.status(403).json({"success": false, "data": null, "message": "Email already exists"});
         }
 
