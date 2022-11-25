@@ -34,8 +34,7 @@ const updatePostController = async ( req: UserIdRequest, res: Response, next: Ne
         // Check if a post exists 
         let postUpdateDetails: (IPostModel & { _id: string; }) | null = await Post.findByIdAndUpdate({ _id: postId }, { content });
 
-        // @ts-ignore
-        return res.status(201).json({"success": true, "data": { "postId" : postUpdateDetails._id}, "message": null});
+        return res.status(204).json({"success": true, "data": { "postId" : postUpdateDetails?._id}, "message": null});
     } catch ( err: any ){
         Logging.error(err.message);
         return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
@@ -50,11 +49,34 @@ const deletePostController = async ( req: UserIdRequest, res: Response, next: Ne
     try {        
         // Check if a post exists 
         let postDeleteDetails: (IPostModel & { _id: string; }) | null = await Post.findByIdAndDelete(postId);
-        
-        Logging.info(postDeleteDetails);
 
-        // @ts-ignore
-        return res.status(201).json({"success": true, "data": { "postId" : postUpdateDetails._id}, "message": null});
+        return res.status(200).json({"success": true, "data": { "postId" : postDeleteDetails?._id}, "message": null});
+    } catch ( err: any ){
+        Logging.error(err.message);
+        return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
+    }
+}
+
+/** Get all posts by a user */
+const getAllPostsByAUser = async ( req: UserIdRequest, res: Response, next: NextFunction ) : Promise <Response> => {
+    
+    try {
+        let allPostsOfTheParticularUser = await Post.find({ "userId" : req.userDocument.userId });
+        return res.status(200).json({"success": true, "data": { allPostsOfTheParticularUser }, "message": null});
+    } catch ( err: any ){
+        Logging.error(err.message);
+        return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
+    }
+}
+
+/** Get a specific post */
+const getAParticularPost = async ( req: UserIdRequest, res: Response, next: NextFunction ) : Promise <Response> => {
+    
+    const { postId } = req.query ;
+    
+    try {
+        let particularPostRequestByTheUser = await Post.findById(postId);
+        return res.status(201).json({"success": true, "data": { particularPostRequestByTheUser }, "message": null});
     } catch ( err: any ){
         Logging.error(err.message);
         return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
@@ -66,4 +88,4 @@ const deletePostController = async ( req: UserIdRequest, res: Response, next: Ne
  * 
  */
 
-export { createPostController, updatePostController, deletePostController };
+export { createPostController, updatePostController, deletePostController, getAllPostsByAUser, getAParticularPost };
