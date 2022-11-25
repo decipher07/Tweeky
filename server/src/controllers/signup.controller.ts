@@ -59,7 +59,7 @@ const updateUserNameController = async ( req: UserIdRequest, res: Response, next
             return res.status(403).json({"success": false, "data": null, "message": "Username already exists"});
         }
         
-        await User.updateOne({ "_id" : req.userId.userId as any }, { $set: { username }})
+        await User.updateOne({ "_id" : req.userDocument.userId as any }, { $set: { username }})
         
         return res.status(201).json({"success": true, "data": null, "message": null});
     } catch ( err: any ){
@@ -76,7 +76,7 @@ const updatePasswordController = async ( req: UserIdRequest, res: Response, next
 
     try {        
         // Validating Username exists or not
-        const usernameValidationForPreviousExistingEntries : { _id : string } | null = await User.exists({ "_id": req.userId });
+        const usernameValidationForPreviousExistingEntries : { _id : string } | null = await User.exists({ "_id": req.userDocument.userId });
 
         if ( !usernameValidationForPreviousExistingEntries ){
             return res.status(403).json({"success": false, "data": null, "message": "UserId does not exists"});
@@ -85,7 +85,7 @@ const updatePasswordController = async ( req: UserIdRequest, res: Response, next
         // Generating the hash of the password 
         const hashedPassword : string = await hash( password, 10 );
 
-        await User.updateOne({ "_id" : req.userId }, { $set: { password: hashedPassword }})
+        await User.updateOne({ "_id" : req.userDocument.userId }, { $set: { password: hashedPassword }})
         
         return res.status(201).json({"success": true, "data": null, "message": null});
     } catch ( err: any ){

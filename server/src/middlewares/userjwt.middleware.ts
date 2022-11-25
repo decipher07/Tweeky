@@ -16,7 +16,7 @@ const decryptJWTToken = async (req: UserIdRequest, res: Response, next: NextFunc
 
     try {
         const verified: any = await jwt.verify(token, config.jwt.secret) as any;
-        req.userId = verified;
+        req.userDocument = verified;
         next();
     } catch (err) {
         Logging.error("Access Denied! No token entered.")
