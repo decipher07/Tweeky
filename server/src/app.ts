@@ -5,6 +5,7 @@ import authRoutes from './routers/auth.router'
 import connectToMongoDB from './database/mongoose'
 import signingRoutes from './routers/signup.router'
 import postsRoutes from './routers/posts.router'
+import followRoutes from './routers/followers.router'
 
 const app: Express = express();
 
@@ -54,6 +55,9 @@ app.use('/sign', signingRoutes);
 
 /** Post routes */
 app.use('/posts', postsRoutes);
+
+/** Followers routes */
+app.use('/follow', followRoutes);
 
 app.get('/ping', (req: Request, res: Response, next: NextFunction) => res.status(200).json({"message": "Server Working Successfully!"}));
 
