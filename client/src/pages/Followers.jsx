@@ -62,7 +62,7 @@ function Followers() {
                         <input type="button" className="btn btn-dark submit" value="Post status" />
                     </a>
 
-                    <a href="http://localhost:5173/poststatus">
+                    <a href="http://localhost:5173/feeds">
                         <input type="button" className="btn btn-dark submit" value="Feeds" />
                     </a>
 

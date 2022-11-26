@@ -8,9 +8,9 @@ function OwnFeeds() {
     const [feedsList, setFeedsList] = useState(null);
 
     useEffect(() => {
-        
+
         const token = localStorage.getItem("token");
-        
+
         const headers = {
             'Authorization': `Bearer ${token}`,
         };
@@ -33,14 +33,26 @@ function OwnFeeds() {
                 {
                     feedsList?.allPostsOfTheParticularUser.map((item) => {
                         return (
-                                <div className="feedslist">
+                            <div className="feedslist">
                                 {/* <h5>@{item._id}</h5> */}
                                 <p>{item.content}</p>
                                 <p>Updated At: {item.updatedAt}</p>
-                            </div>                            
+                            </div>
                         )
                     })
                 }
+
+
+                <div className="footerFrame">
+                    <a href="http://localhost:5173/follower">
+                        <input type="button" className="btn btn-dark submit" value="Check all Users" />
+                    </a>
+
+                    <a href="http://localhost:5173/feeds">
+                        <input type="button" className="btn btn-dark submit" value="Feeds" />
+                    </a>
+                </div>
+
             </div>
         </div>
     )

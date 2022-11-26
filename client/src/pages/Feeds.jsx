@@ -8,9 +8,9 @@ function Feeds() {
     const [feedsList, setFeedsList] = useState(null);
 
     useEffect(() => {
-        
+
         const token = localStorage.getItem("token");
-        
+
         const headers = {
             'Authorization': `Bearer ${token}`,
         };
@@ -36,14 +36,25 @@ function Feeds() {
                         return item.posts.map((individualPosts) => {
                             return (
                                 <div className="feedslist">
-                                <h5>@{item.username}</h5>
-                                <p>{individualPosts.content}</p>
-                            </div>
+                                    <h5>@{item.username}</h5>
+                                    <p>{individualPosts.content}</p>
+                                </div>
                             )
                         })
                     }) : null
-                    
+
                 }
+
+                <div className="footerFrame">
+                    <a href="http://localhost:5173/follower">
+                        <input type="button" className="btn btn-dark submit" value="Check all Users" />
+                    </a>
+                    
+                    <a href="http://localhost:5173/myposts">
+                        <input type="button" className="btn btn-dark submit" value="My Posts" />
+                    </a>
+                </div>
+
             </div>
         </div>
     )
