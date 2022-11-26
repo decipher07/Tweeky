@@ -2,17 +2,25 @@ import React from 'react'
 import { useState } from 'react'
 import './Login.css'
 import axios from 'axios';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
     const body = { email, password };
-    const response = await axios.post('http://localhost:3001/sign/login', body);
-    
-    localStorage.setItem("token", response.data.data.token);
+
+    try {
+      const response = await axios.post('http://localhost:3001/sign/login', body);
+      localStorage.setItem("token", response.data.data.token);
+      navigate('/follower');
+    } catch ( err ){
+      alert(err.response.data.message);
+    }
   }
 
   return (
@@ -24,7 +32,7 @@ const Login = () => {
         <h6 className="text-center sub-heading">Tweeky for Squareboat</h6>
 
         <div className="formClass">
-          <form action="/follower" method="get" onSubmit={handleSubmit}>
+          <form action="/login" method="get" onSubmit={handleSubmit}>
             <input type="text" id="email" name="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} /><br /><br />
             <input type="password" id="pass" name="pass" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
             <div className='buttonDisp'>

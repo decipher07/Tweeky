@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import './Followers.css';
 import axios from 'axios';
 
@@ -44,6 +45,14 @@ function Followers() {
         }
     }
 
+    const navigate = useNavigate();
+
+    const logout = async (e) => {
+        localStorage.removeItem("token");
+
+        navigate('/login');
+    }
+
     return (
         <div className="main">
             <div className="followerFrame">
@@ -66,6 +75,7 @@ function Followers() {
                         <input type="button" className="btn btn-dark submit" value="Feeds" />
                     </a>
 
+                    <button type="button" className="btn btn-dark submit" value="Logout" onClick={(e) => logout(e)}>Logout</button>
                 </div>
             </div>
         </div>

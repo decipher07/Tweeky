@@ -2,6 +2,7 @@ import React from 'react'
 import './Feeds.css'
 import { useState, useEffect } from 'react'
 import axios from 'axios';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function OwnFeeds() {
 
@@ -24,6 +25,13 @@ function OwnFeeds() {
 
     }, []);
 
+    const navigate = useNavigate();
+
+    const logout = async (e) => {
+        localStorage.removeItem("token");
+
+        navigate('/login');
+    }
 
     return (
         <div className="main">
@@ -51,6 +59,9 @@ function OwnFeeds() {
                     <a href="http://localhost:5173/feeds">
                         <input type="button" className="btn btn-dark submit" value="Feeds" />
                     </a>
+
+                    <button type="button" className="btn btn-dark submit" value="Logout" onClick={(e) => logout(e)}>Logout</button>
+
                 </div>
 
             </div>

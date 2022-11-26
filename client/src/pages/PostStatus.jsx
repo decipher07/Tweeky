@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import './PostStatus.css'
 import axios from 'axios';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 
 function PostStatus() {
     const [message, setMessage] = useState("");
@@ -21,6 +22,15 @@ function PostStatus() {
         if (response.data.success)
             window.location = window.location
     }
+
+    const navigate = useNavigate();
+
+    const logout = async (e) => {
+        localStorage.removeItem("token");
+
+        navigate('/login');
+    }
+
 
     return (
         <div className="main">
@@ -45,6 +55,9 @@ function PostStatus() {
                             <a href="http://localhost:5173/myposts">
                                 <input type="button" className="btn btn-dark submit" value="My Posts" />
                             </a>
+                        </div>
+                        <div className='buttonProp'>
+                            <button type="button" className="btn btn-dark submit" value="Logout" onClick={(e) => logout(e)}>Logout</button>
                         </div>
                     </form>
                 </div>
