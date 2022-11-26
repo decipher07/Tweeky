@@ -30,10 +30,15 @@ const Login = () => {
             <input type="password" id="pass" name="pass" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
             <div className='buttonDisp'>
               <input type="submit" className="btn btn-dark submit" value="Login" />
-              <a className="btn btn-outline-dark google-btn" role="button" href="localhost:3001/auth">
+              <a className="btn btn-dark google-btn" role="button" href="localhost:3001/auth">
                 <img width="20px" alt="Google sign-in" id='googletag'
                   src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
                 Login
+              </a>
+            </div>
+            <div className="underwrittenText">
+              <a href="http://www.google.com">
+                <input type="button" className="btn btn-dark submit" value="Signup" />
               </a>
             </div>
           </form>
