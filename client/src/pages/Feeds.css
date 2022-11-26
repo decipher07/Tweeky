@@ -1,0 +1,28 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    background-image: url("../assets/header.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top right;
+    background-size: cover;
+    color: wheat;
+}
+.feedslist {
+    border: 2px solid white;
+    margin-bottom: 2%;
+    padding: 2%;
+}
+
+.feedsFrame {
+    width: 50vw;
+    text-align: left;
+}
+
+.heading {
+    margin: 2%;
+}
