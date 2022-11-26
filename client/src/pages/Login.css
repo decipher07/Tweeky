@@ -1,0 +1,28 @@
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    background-color: #ffffff;
+    background-image: url("../assets/header.svg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: top right;
+    background-size: cover;
+    color: wheat;
+}
+
+.formClass {
+    margin-top: 10%;
+}
+
+.buttonDisp {
+    display: flex;
+    justify-content: space-between;
+}
+
+#googletag{
+    margin-bottom:3px; 
+    margin-right:5px
+}
