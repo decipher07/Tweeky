@@ -5,6 +5,7 @@ import { hash, compare } from 'bcryptjs'
 import { UserIdRequest } from "../types/app-request";
 import jwt from 'jsonwebtoken';
 import { config } from "../config/config";
+import Followers from "../models/Followers";
 
 /** Signing up User */
 const createUserController = async ( req: Request, res: Response, next: NextFunction ) : Promise <Response> => {
@@ -31,13 +32,19 @@ const createUserController = async ( req: Request, res: Response, next: NextFunc
         const hashedPassword : string = await hash( password, 10 );
 
         // Saving the User Data to the Model
-        await new User({
+        const userDocument = await new User({
             name,
             password: hashedPassword,
             username,
             email
         }).save();
         
+        // Save the Following Models
+        await new Followers({
+            "userId": userDocument?._id,
+            following: []
+        }).save();
+
         return res.status(201).json({"success": true, "data": null, "message": null});
     } catch ( err: any ){
         Logging.error(err.message);

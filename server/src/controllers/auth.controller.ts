@@ -5,6 +5,7 @@ import Logging from "../logger/logging";
 import User, { IUser, IUserModel } from "../models/User";
 import jwt from "jsonwebtoken";
 import { config } from "../config/config";
+import Followers from "../models/Followers";
 
 /* Server redirection to different website */
 const getGoogleAuthURLController = (req: Request, res: Response) => {
@@ -53,6 +54,12 @@ const redirectGoogleAuthController = async (req: Request, res: Response) => {
         const userDocument = await new User({
             name,
             email
+        }).save();
+
+        // Save the Following Models
+        await new Followers({
+            "userId": userDocument?._id,
+            following: []
         }).save();
 
         const token = jwt.sign(
