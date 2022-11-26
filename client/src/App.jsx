@@ -4,6 +4,7 @@ import './App.css'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import Followers from './pages/Followers'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route index element={<Navigate to="login" />}/>
       <Route path='login' element={<Login />}/>
       <Route path='signup' element={<SignUp/>}/>
+      <Route path='follower' element={<Followers/>} />
     </Routes>
   )
 }
