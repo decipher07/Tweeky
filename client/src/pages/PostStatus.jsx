@@ -16,7 +16,7 @@ function PostStatus() {
         const response = await axios.post('http://localhost:3001/posts/post', body, { headers });
         console.log(response);
 
-        if ( response.data.success )
+        if (response.data.success)
             window.location = window.location
     }
 
@@ -33,6 +33,11 @@ function PostStatus() {
                         </textarea>
                         <div>
                             <input type="submit" className="btn btn-dark submit" value="Submit" />
+                        </div>
+                        <div className='buttonProp'>
+                            <a href="http://localhost:5173/poststatus">
+                                <input type="button" className="btn btn-dark submit" value="Feeds" />
+                            </a>
                         </div>
                     </form>
                 </div>
