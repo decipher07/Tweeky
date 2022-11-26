@@ -8,8 +8,11 @@ function Followers() {
     const [followersList, setFollowersList] = useState(null);
 
     useEffect(() => {
+        
+        const token = localStorage.getItem("token");
+        
         const headers = {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgxYjFkMmY2YTU0ODVlMWZjNGJjYTkiLCJlbWFpbCI6InNvbWV0aGluZzEyQGdtYWlsLmNvbSIsImlhdCI6MTY2OTQ0NDczOSwiZXhwIjoxNjcyMDM2NzM5fQ.hgNBInTeeSp2n-ZmiGBKmmPVdrnKwbCZ0dvJerN_WhM',
+            'Authorization': `Bearer ${token}`,
         };
 
         async function fetchData() {
@@ -23,15 +26,18 @@ function Followers() {
 
 
     const followAUser = async (e, userId) => {
+        
+        const token = localStorage.getItem("token");
+        
         const headers = {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgxYjFkMmY2YTU0ODVlMWZjNGJjYTkiLCJlbWFpbCI6InNvbWV0aGluZzEyQGdtYWlsLmNvbSIsImlhdCI6MTY2OTQ0NDczOSwiZXhwIjoxNjcyMDM2NzM5fQ.hgNBInTeeSp2n-ZmiGBKmmPVdrnKwbCZ0dvJerN_WhM',
+            'Authorization': `Bearer ${token}`,
         };
 
 
         try {
             const body = { "userIdRecipient": userId };
-            const response = await axios.post('http://localhost:3001/follow/followUser', body, { headers });
-            console.log(response);
+            await axios.post('http://localhost:3001/follow/followUser', body, { headers });
+
         } catch (err) {
             console.log(err);
             alert(err.response.data.message);
@@ -52,11 +58,11 @@ function Followers() {
 
                 <div className="footerFrame">
                     
-                    <a href="http://www.google.com">
+                    <a href="http://localhost:5173/poststatus">
                         <input type="button" className="btn btn-dark submit" value="Post status" />
                     </a>
 
-                    <a href="http://www.google.com">
+                    <a href="http://localhost:5173/poststatus">
                         <input type="button" className="btn btn-dark submit" value="Feeds" />
                     </a>
 

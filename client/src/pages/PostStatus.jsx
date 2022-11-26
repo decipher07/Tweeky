@@ -8,8 +8,10 @@ function PostStatus() {
 
     const handleSubmit = async (e) => {
 
+        const token = localStorage.getItem("token");
+        
         const headers = {
-            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzgxYjFkMmY2YTU0ODVlMWZjNGJjYTkiLCJlbWFpbCI6InNvbWV0aGluZzEyQGdtYWlsLmNvbSIsImlhdCI6MTY2OTQ0NDczOSwiZXhwIjoxNjcyMDM2NzM5fQ.hgNBInTeeSp2n-ZmiGBKmmPVdrnKwbCZ0dvJerN_WhM',
+            'Authorization': `Bearer ${token}`,
         };
 
         const body = { content: message };
