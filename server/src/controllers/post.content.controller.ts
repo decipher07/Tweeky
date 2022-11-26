@@ -1,9 +1,7 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import Logging from "../logger/logging";
-import User, { IUser, IUserModel } from "../models/User";
-import { config } from "../config/config";
 import { UserIdRequest } from "../types/app-request";
-import Post, { IPost, IPostModel } from "../models/Post";
+import Post, { IPostModel } from "../models/Post";
 
 /** Create a Post */
 const createPostController = async ( req: UserIdRequest, res: Response, next: NextFunction ) : Promise <Response> => {
