@@ -51,4 +51,17 @@ const getAllFollowingsOfTheUser = async ( req: UserIdRequest, res: Response, nex
     }
 }
 
-export { followAUserController, getAllFollowingsOfTheUser };
+/** Get all the Users in the database */
+const getAllUsers = async ( req: UserIdRequest, res: Response, next: NextFunction ): Promise<Response> => {
+    try {
+        // Get all the followers from the users
+        const detailsOfAllTheUser = await User.find({ "_id" : { $ne : req.userDocument.userId } }).select({ "name" : 1, "_id": 1, "username" : 1 })
+
+        return res.status(200).json({"success": true, "data": detailsOfAllTheUser, "message": null});
+    } catch ( err: any ){
+        Logging.error(err.message);
+        return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
+    }
+}
+
+export { followAUserController, getAllFollowingsOfTheUser, getAllUsers };
