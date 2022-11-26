@@ -38,6 +38,17 @@ const followAUserController = async ( req: UserIdRequest, res: Response, next: N
     }
 }
 
-/** See the list of your followers */
+/** See the list of your followings */
+const getAllFollowingsOfTheUser = async ( req: UserIdRequest, res: Response, next: NextFunction ) : Promise <Response> => {
+    try {
+        // Get all the followers from the users
+        const detailsOfTheUser = await Followers.find({ "userId": req.userDocument.userId}).populate('following', 'name username');
 
-export { followAUserController };
+        return res.status(200).json({"success": true, "data": detailsOfTheUser, "message": null});
+    } catch ( err: any ){
+        Logging.error(err.message);
+        return res.status(500).json({"success": false, "data": null, "message": "Something went wrong"});
+    }
+}
+
+export { followAUserController, getAllFollowingsOfTheUser };
