@@ -1,19 +1,18 @@
 import React from 'react'
 import { useState } from 'react'
 import './Login.css'
+import axios from 'axios';
 
 const Login = () => {
 
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log(username);
-    console.log(password);
-
-    alert('You want to this ? ')
+  const handleSubmit = async (e) => {
+    const body = { email, password };
+    const response = await axios.post('http://localhost:3001/sign/login', body);
+    
+    localStorage.setItem("token", response.data.data.token);
   }
 
   return (
@@ -25,8 +24,8 @@ const Login = () => {
         <h6 className="text-center sub-heading">Tweeky for Squareboat</h6>
 
         <div className="formClass">
-          <form action="/" method="post" onSubmit={handleSubmit}>
-            <input type="text" id="username" name="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} /><br /><br />
+          <form action="/follower" method="get" onSubmit={handleSubmit}>
+            <input type="text" id="email" name="email" placeholder="email" value={email} onChange={(e) => setEmail(e.target.value)} /><br /><br />
             <input type="password" id="pass" name="pass" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} /><br /><br />
             <div className='buttonDisp'>
               <input type="submit" className="btn btn-dark submit" value="Login" />
