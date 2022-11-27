@@ -37,7 +37,7 @@ function Followers() {
 
         try {
             const body = { "userIdRecipient": userId };
-            await axios.post('http://localhost:3001/follow/followUser', body, { headers });
+            await axios.post('http://43.204.215.187:3001/follow/followUser', body, { headers });
 
         } catch (err) {
             console.log(err);
