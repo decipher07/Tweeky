@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 /* Server Configuration */
-const SERVER_PORT = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 3001;
+const SERVER_PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
 
 /* Google OAuth Configurations */
 const GOOGLE_CLIENT_ID : string = process.env.GOOGLE_CLIENT_ID || '';
