@@ -44,7 +44,7 @@ const Login = () => {
               </a>
             </div>
             <div className="underwrittenText">
-              <a href="http://www.google.com">
+              <a href="http://localhost:5173/signup">
                 <input type="button" className="btn btn-dark submit" value="Signup" />
               </a>
             </div>

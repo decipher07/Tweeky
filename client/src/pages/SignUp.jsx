@@ -29,8 +29,8 @@ const SignUp = () => {
             
             if ( response.status == 201 )
                 navigate('/login');
-            
-            alert(response.data.message)
+            else
+                alert(response.data.message)
         } catch (err) {
             console.log(err);
             alert(err.response.data.message);
