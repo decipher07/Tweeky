@@ -11,7 +11,7 @@ const GOOGLE_CLIENT_SECRET : string = process.env.GOOGLE_CLIENT_SECRET || '';
 const GOOGLE_REDIRECT_URI : string = process.env.GOOGLE_REDIRECT_URI || "http://localhost:3001/auth/redirect"
 
 /* MongoDB Configurations */
-const MONGO_URL: string = process.env.MONGO_URL || 'mongodb://localhost:27017/tweeky'
+const MONGO_URL: string = process.env.MONGO_URL || ''
 
 /* JWT Configurations*/
 const JWT_SECRET: string = process.env.JWT_SECRET || 'squareboat'
