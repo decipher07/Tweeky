@@ -17,7 +17,7 @@ function Feeds() {
         };
 
         async function fetchData() {
-            const response = await axios.get('https://tweekysquareboat.herokuapp.com/posts/feeds', { headers });
+            const response = await axios.get('http://43.204.215.187:3001/posts/feeds', { headers });
             setFeedsList(response.data.data);
         }
 
