@@ -16,7 +16,7 @@ function PostStatus() {
         };
 
         const body = { content: message };
-        const response = await axios.post('https://tweekysquareboat.herokuapp.com/posts/post', body, { headers });
+        const response = await axios.post('http://43.204.215.187:3001/posts/post', body, { headers });
         console.log(response);
 
         if (response.data.success)

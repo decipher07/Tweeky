@@ -25,7 +25,7 @@ const SignUp = () => {
 
         try {
             const body = { name, username, password, email };
-            const response = await axios.post('https://tweekysquareboat.herokuapp.com/sign/signup', body);
+            const response = await axios.post('http://43.204.215.187:3001/sign/signup', body);
             
             if ( response.status == 201 )
                 navigate('/login');
