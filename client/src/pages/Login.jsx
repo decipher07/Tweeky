@@ -15,7 +15,7 @@ const Login = () => {
     const body = { email, password };
 
     try {
-      const response = await axios.post('http://localhost:3001/sign/login', body);
+      const response = await axios.post('https://tweekysquareboat.herokuapp.com/sign/login', body);
       localStorage.setItem("token", response.data.data.token);
       navigate('/follower');
     } catch ( err ){

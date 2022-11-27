@@ -8,7 +8,7 @@ function PostStatus() {
     const [message, setMessage] = useState("");
 
     const handleSubmit = async (e) => {
-
+        e.preventDefault();
         const token = localStorage.getItem("token");
         
         const headers = {
@@ -16,7 +16,7 @@ function PostStatus() {
         };
 
         const body = { content: message };
-        const response = await axios.post('http://localhost:3001/posts/post', body, { headers });
+        const response = await axios.post('https://tweekysquareboat.herokuapp.com/posts/post', body, { headers });
         console.log(response);
 
         if (response.data.success)

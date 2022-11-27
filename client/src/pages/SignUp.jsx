@@ -25,7 +25,7 @@ const SignUp = () => {
 
         try {
             const body = { name, username, password, email };
-            const response = await axios.post('http://localhost:3001/sign/signup', body);
+            const response = await axios.post('https://tweekysquareboat.herokuapp.com/sign/signup', body);
             
             if ( response.status == 201 )
                 navigate('/login');

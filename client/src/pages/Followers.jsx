@@ -17,7 +17,7 @@ function Followers() {
         };
 
         async function fetchData() {
-            const response = await axios.get('http://localhost:3001/follow/getAllUsers', { headers });
+            const response = await axios.get('https://tweekysquareboat.herokuapp.com/follow/getAllUsers', { headers });
             setFollowersList(response.data.data);
         }
 
@@ -37,7 +37,7 @@ function Followers() {
 
         try {
             const body = { "userIdRecipient": userId };
-            await axios.post('http://localhost:3001/follow/followUser', body, { headers });
+            await axios.post('https://tweekysquareboat.herokuapp.com/follow/followUser', body, { headers });
 
         } catch (err) {
             console.log(err);

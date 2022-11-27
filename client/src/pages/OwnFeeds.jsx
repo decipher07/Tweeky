@@ -17,7 +17,7 @@ function OwnFeeds() {
         };
 
         async function fetchData() {
-            const response = await axios.get('http://localhost:3001/posts/me/all', { headers });
+            const response = await axios.get('https://tweekysquareboat.herokuapp.com/posts/me/all', { headers });
             setFeedsList(response.data.data);
         }
 
