@@ -67,11 +67,11 @@ function Followers() {
 
                 <div className="footerFrame">
                     
-                    <a href="http://localhost:5173/poststatus">
+                    <a href="http://43.204.215.187:5173/poststatus">
                         <input type="button" className="btn btn-dark submit" value="Post status" />
                     </a>
 
-                    <a href="http://localhost:5173/feeds">
+                    <a href="http://43.204.215.187:5173/feeds">
                         <input type="button" className="btn btn-dark submit" value="Feeds" />
                     </a>
 

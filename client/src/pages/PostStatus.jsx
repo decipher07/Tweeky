@@ -47,12 +47,12 @@ function PostStatus() {
                             <input type="submit" className="btn btn-dark submit" value="Submit" />
                         </div>
                         <div className='buttonProp'>
-                            <a href="http://localhost:5173/feeds">
+                            <a href="http://43.204.215.187:5173/feeds">
                                 <input type="button" className="btn btn-dark submit" value="Feeds" />
                             </a>
                         </div>
                         <div className='buttonProp'>
-                            <a href="http://localhost:5173/myposts">
+                            <a href="http://43.204.215.187:5173/myposts">
                                 <input type="button" className="btn btn-dark submit" value="My Posts" />
                             </a>
                         </div>
